@@ -1,6 +1,6 @@
 {
-  "name": "Treino da Lari",
-  "short_name": "Treino",
+  "name": "Treinos",
+  "short_name": "Treinos",
   "description": "Treino de musculação da Lari",
   "lang": "pt-BR",
   "start_url": "./",

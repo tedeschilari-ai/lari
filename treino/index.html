@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Treino da Lari</title>
+<title>Treinos</title>
 <meta name="theme-color" content="#0D0D0D">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon-192.png">
@@ -384,9 +384,73 @@ a.item,a.note{text-decoration:none;color:var(--ink)}
 .mdots em{font-style:normal;font-size:.68rem;font-weight:700;color:var(--muted);text-transform:capitalize}
 .mdots i{width:32px;height:32px}
 .weekdots .fut i{opacity:.45}
+
+/* destaque */
+.temas{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.tema{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 6px;border-radius:18px;border:2px solid transparent;background:var(--sunk);font:inherit;font-size:.75rem;font-weight:700;color:var(--ink);cursor:pointer}
+.tema i{width:38px;height:38px;border-radius:50%;display:block;box-shadow:inset 0 0 0 1px rgb(0 0 0 / .08)}
+.tema.on{border-color:var(--ink);background:var(--surface)}
+html:not([data-acc="pb"]) .btn:not(.light):not(.onv),
+html:not([data-acc="pb"]) .okb.on,
+html:not([data-acc="pb"]) .dock a.on,
+html:not([data-acc="pb"]) .weekdots .on i,
+html:not([data-acc="pb"]) .avatar,
+html:not([data-acc="pb"]) .btag,
+html:not([data-acc="pb"]) .chips button.on,
+html:not([data-acc="pb"]) .pill.dark,
+html:not([data-acc="pb"]) .iconbtn.sm.on,
+html:not([data-acc="pb"]) .stype.st-d,html:not([data-acc="pb"]) .stype.st-f,
+html:not([data-acc="pb"]) .hero.inv{background:var(--acc);color:#fff;border-color:transparent}
+html:not([data-acc="pb"]) .side a.on{background:var(--acc);color:#fff}
+html:not([data-acc="pb"]) .hero.inv .muted,html:not([data-acc="pb"]) .hero.inv .eyebrow{color:rgb(255 255 255 / .82)}
+html:not([data-acc="pb"]) .hero.inv .badge{background:rgb(255 255 255 / .22);color:#fff}
+html:not([data-acc="pb"]) .hero.inv .btn.onv{background:#fff;color:#0D0D0D}
+html:not([data-acc="pb"]) .rest.inv{background:var(--acc);color:#fff}
 .syncpill{position:fixed;z-index:45;top:calc(12px + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);white-space:nowrap;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:7px 12px;font-size:.78rem;font-weight:700;box-shadow:var(--shadow);text-decoration:none;max-width:calc(100vw - 24px)}
 .syncpill.bad{background:#B42318;border-color:#B42318;color:#fff}
 .banner{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+
+.login{position:fixed;inset:0;z-index:60;background:#0A0A0A;color:#fff;display:flex;flex-direction:column;justify-content:space-between;gap:28px;padding:calc(24px + env(safe-area-inset-top,0px)) 24px calc(24px + env(safe-area-inset-bottom,0px));overflow-y:auto;overflow-x:hidden;isolation:isolate}
+.login .glow{position:absolute;z-index:-1;width:150vmax;height:150vmax;left:50%;top:-30vmax;translate:-30% 0;border-radius:50%;background:conic-gradient(from 0deg,#ffffff00,#ffffff2e,#ffffff00 30%,#ffffff14 55%,#ffffff00 70%,#ffffff26 85%,#ffffff00);filter:blur(60px);animation:lgspin 22s linear infinite}
+html:not([data-acc="pb"]) .login .glow{background:var(--acc);opacity:.55;filter:blur(90px);width:90vmax;height:90vmax;top:-35vmax;animation:lgfloat 9s ease-in-out infinite alternate}
+@keyframes lgspin{to{rotate:360deg}}
+@keyframes lgfloat{to{translate:-55% 12vmax;scale:1.15}}
+.lg-top{display:flex;align-items:center;justify-content:space-between}
+.lg-mark{width:44px;height:44px;border-radius:14px;background:#fff;color:#0A0A0A;display:grid;place-items:center}
+.lg-mark svg{width:26px;height:26px}
+.lg-mark.big{width:64px;height:64px;border-radius:20px}
+.lg-mark.big svg{width:36px;height:36px}
+html:not([data-acc="pb"]) .lg-mark{background:var(--acc);color:#fff}
+.lg-tag{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#ffffff99;border:1px solid #ffffff2e;border-radius:999px;padding:6px 12px}
+.lg-mid{display:flex;flex-direction:column;gap:14px;margin-top:auto}
+.lg-word{font-size:clamp(3.6rem,19vw,6.5rem);line-height:.88;letter-spacing:-.06em;font-weight:800;margin:0}
+.lg-word span{color:#ffffff55}
+html:not([data-acc="pb"]) .lg-word span{background:var(--acc);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lg-sub{font-size:1.05rem;color:#ffffffb3;max-width:30ch;margin:0}
+.lg-dots{display:flex;gap:8px;margin-top:6px}
+.lg-dots i{width:22px;height:22px;border-radius:50%;background:#ffffff1f;animation:lgpop .5s cubic-bezier(.2,.9,.3,1.4) both}
+.lg-dots i.on{background:#fff}
+html:not([data-acc="pb"]) .lg-dots i.on{background:var(--acc)}
+@keyframes lgpop{from{scale:0;opacity:0}}
+.lg-form{display:flex;flex-direction:column;gap:12px;width:100%;max-width:440px;align-self:center}
+.lg-field{display:flex;flex-direction:column;gap:8px;font-size:.75rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#ffffff99}
+.lg-field input{font:inherit;font-size:1rem;letter-spacing:0;text-transform:none;color:#fff;background:#ffffff12;border:1px solid #ffffff24;border-radius:18px;padding:16px 18px;outline:none}
+.lg-field input:focus{border-color:#fff;background:#ffffff1a}
+.lg-btn{font:inherit;font-weight:800;font-size:1.05rem;border:0;border-radius:999px;padding:17px;background:#fff;color:#0A0A0A;cursor:pointer}
+.lg-btn:disabled{opacity:.6}
+html:not([data-acc="pb"]) .lg-btn{background:var(--acc);color:#fff}
+.lg-err{margin:0;color:#FF9C8A;font-size:.9rem}
+.lg-help{color:#ffffffb3;font-size:.88rem}
+.lg-help summary{cursor:pointer;text-align:center;padding:6px;list-style:none;text-decoration:underline;text-underline-offset:3px}
+.lg-help summary::-webkit-details-marker{display:none}
+.lg-help ol{margin:10px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.lg-help a{color:#fff;font-weight:700}
+.splash{justify-content:center;transition:opacity .4s ease}
+.splash .lg-mid{margin:0}
+.splash .lg-word{font-size:clamp(3rem,15vw,5rem)}
+.splash.out{opacity:0;pointer-events:none}
+@media (min-width:900px){.login{padding:48px 64px}.lg-mid{max-width:640px}}
+@media (prefers-reduced-motion:reduce){.login .glow,.lg-dots i{animation:none}}
 </style>
 
 
@@ -395,7 +459,7 @@ a.item,a.note{text-decoration:none;color:var(--ink)}
 <a id="sync" class="syncpill" href="#ajustes" hidden></a>
 <div class="shell">
   <aside class="side" aria-label="Menu">
-    <div class="brand"><span class="avatar">L</span>Treino da Lari</div>
+    <div class="brand"><span class="avatar">L</span>Treinos</div>
     <div id="sidenav" style="display:flex;flex-direction:column;gap:4px"></div>
     <div id="sidelive" hidden></div>
   </aside>
@@ -522,6 +586,7 @@ const fmtDesc=s=>!s?"Sem descanso":s<60?s+" s":(s%60?Math.floor(s/60)+" min "+(s
 const STYPES=["n","a","d","f"], STL={n:"",a:"A",d:"D",f:"F"}, STN={n:"Série normal",a:"Aquecimento (não conta nos gráficos)",d:"Drop (queda de carga)",f:"Até a falha"};
 const NAV=[["inicio","Início"],["rotinas","Rotinas"],["exercicios","Exercícios"],["evolucao","Evolução"],["historico","Histórico"]];
 const IC={
+  gear:'<circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.6M12 18.6v2.6M2.8 12h2.6M18.6 12h2.6M5.5 5.5l1.8 1.8M16.7 16.7l1.8 1.8M5.5 18.5l1.8-1.8M16.7 7.3l1.8-1.8"/>',
   inicio:'<path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/>',
   rotinas:'<rect x="4" y="3.5" width="16" height="17" rx="3"/><path d="M8 8.5h8M8 12h8M8 15.5h5"/>',
   exercicios:'<rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/>',
@@ -634,6 +699,24 @@ function thumb(id,anim){
   return `<span class="ini">${esc(ini)}</span>`;
 }
 
+/* ---------- aparência ---------- */
+const TEMAS=[["pb","Preto e branco","#0D0D0D"],["sunset","Pôr do sol","linear-gradient(135deg,#FF8A3D,#FF4D8D 52%,#8B5CF6)"],["laranja","Laranja","#FF6A1F"],["rosa","Rosa","#FF3D8B"],["roxo","Roxo","#7C4DFF"],["azul","Azul","#2F6BFF"],["verde","Verde","#12B76A"]];
+function lsGet(k){try{return localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+function applyTema(t){const T=TEMAS.find(x=>x[0]===t)||TEMAS[0];document.documentElement.dataset.acc=T[0];document.documentElement.style.setProperty("--acc",T[2]);S.tema=T[0]}
+applyTema(lsGet("treinos.tema")||"pb");
+function setTema(t){applyTema(t);lsSet("treinos.tema",t);S.cfg.tema=t;if(S.db)write("config/geral",S.cfg).catch(fail)}
+function vAjustes(){
+  return `<div class="dhead"><a class="iconbtn" href="#inicio" aria-label="Voltar">${I("back")}</a><span class="t">Ajustes</span><span></span></div>
+  <div class="card pad"><span class="eyebrow">Cor de destaque</span><p class="muted small">Muda os botões, o card do próximo treino, as séries feitas e o calendário.</p>
+    <div class="temas">${TEMAS.map(([k,n,c])=>`<button class="tema ${S.tema===k?"on":""}" data-tema="${k}" aria-pressed="${S.tema===k}"><i style="background:${c}"></i><span>${n}</span></button>`).join("")}</div></div>
+  ${typeof ajustesExtra==="function"?ajustesExtra():""}`;
+}
+function bindAjustes(){
+  app.querySelectorAll("[data-tema]").forEach(b=>b.onclick=()=>{setTema(b.dataset.tema);rerender()});
+  if(typeof bindAjustesExtra==="function") bindAjustesExtra();
+}
+
 /* ---------- navegação ---------- */
 const VIEWS=["inicio","rotinas","exercicios","evolucao","historico","ajustes"];
 function go(h){if(location.hash==="#"+h)route();else location.hash=h}
@@ -668,7 +751,7 @@ function render(){
   shell();
   document.getElementById("dock").hidden=!S.token;document.querySelector(".side").hidden=!S.token;
   if(!S.token){app.innerHTML=vSetup();bindSetup();return}
-  if(S.ok===false){const st=S.loadErr&&S.loadErr.status;app.innerHTML=`<div class="banner card"><span>${st===401?"A chave do GitHub não vale mais. Desconecte em Ajustes e conecte de novo.":st===403||st===404?"A chave não tem acesso ao repositório lari-dados.":"Não consegui carregar seus dados do GitHub. Confira a internet."}</span><button class="btn small" onclick="location.reload()">Tentar de novo</button> <a class="btn light small" href="#ajustes">Ajustes</a></div>`;if(S.view==="ajustes"){app.innerHTML=vAjustes();bindAjustes()}return}
+  if(S.ok===false){const st=S.loadErr&&S.loadErr.status;app.innerHTML=`<div class="banner card"><span>${st===401?"A chave do GitHub não vale mais. Desconecte em Ajustes e conecte de novo.":st===403||st===404?"A chave não tem acesso ao repositório lari-dados.":"Não consegui carregar seus dados do GitHub. Confira a internet."}</span><button class="btn small" onclick="location.reload()">Tentar de novo</button></div>`;return}
   if(!S.loaded.exercicios||!S.loaded.rotinas||!S.loaded.historico) return;
   const y=window.scrollY;
   const V={ajustes:vAjustes,inicio:vInicio,rotinas:vRotinas,rot:vRot,trn:vTrn,exercicios:vExs,ex:vEx,exedit:vExEdit,evolucao:vEvo,historico:vHist,ses:vSes};
@@ -710,7 +793,7 @@ function vInicio(){
   const mon=monday(new Date()), wk=[...Array(7)].map((_,i)=>ymd(addDays(mon,i)));
   const doneDays=new Set(ss.map(s=>s.data));
   const nWeek=wk.filter(d=>doneDays.has(d)).length;
-  let h=`<header class="hello"><div class="who"><span class="avatar">L</span><div><b>Olá, Lari</b><span class="muted small">${longDate(td)}</span></div></div><a class="iconbtn" href="#ajustes" aria-label="Ajustes"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1"/></svg></a></header>`;
+  let h=`<header class="hello"><div class="who"><span class="avatar">L</span><div><b>Olá, Lari</b><span class="muted small">${longDate(td)}</span></div></div><a class="iconbtn" href="#ajustes" aria-label="Ajustes e cores">${I("gear")}</a></header>`;
   if(L){
     h+=`<section class="hero inv"><span class="eyebrow">Treino em andamento</span><h2>${esc(L.nome)}</h2><div class="clock" data-clock>${fmtT(elapsed(L))}</div><a class="btn onv block" href="#ses-${L.id}">${I("play")}Continuar treino</a></section>`;
   }else if(r&&nx){
@@ -1385,44 +1468,63 @@ async function testToken(tok){
   }catch(e){return {ok:false,msg:"Sem conexão com o GitHub. Confira a internet e tente de novo."}}
 }
 
-/* ---------- conexão e ajustes ---------- */
+/* ---------- login e ajustes ---------- */
+const LOGO=`<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 7v10M18 7v10M3 10v4M21 10v4M6 12h12"/></svg>`;
 function vSetup(){
-  return `<header class="hello"><div class="stack" style="gap:2px"><h1 class="big">Treino da Lari</h1><span class="muted small">Primeiro acesso neste aparelho</span></div></header>
-  <p class="muted" style="max-width:60ch">Seus treinos ficam guardados no repositório privado <b>lari-dados</b>, no seu GitHub. Para ler e salvar lá, o app precisa de uma chave de acesso. Você faz isso uma vez em cada aparelho, e a chave fica guardada só nele.</p>
-  <div class="card pad">
-    <label class="stack" style="gap:6px"><span class="eyebrow">Chave do GitHub</span><input class="input" id="set-token" type="password" autocomplete="off" placeholder="github_pat_…" value="${esc(S.setupTok||"")}"></label>
-    <ol class="small" style="margin:4px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px">
-      <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener"><b>a página de nova chave do GitHub</b></a>, logada na conta tedeschilari-ai.</li>
-      <li>Em <b>Token name</b>, coloque "App Treino". Em <b>Expiration</b>, escolha 1 ano.</li>
-      <li>Em <b>Repository access</b>, escolha <b>Only select repositories</b> e marque <b>lari-dados</b>.</li>
-      <li>Em <b>Permissions</b>, coloque <b>Contents</b> em <b>Read and write</b>.</li>
-      <li>Clique em <b>Generate token</b>, copie a chave e cole aqui.</li></ol>
-  </div>
-  ${S.setupErr?`<p class="small" style="color:var(--warn,#c00)">${esc(S.setupErr)}</p>`:""}
-  <button class="btn block" data-connect ${S.connecting?"disabled":""}>${S.connecting?"Conectando…":"Conectar"}</button>`;
+  return `<div class="login">
+    <div class="glow" aria-hidden="true"></div>
+    <div class="lg-top"><span class="lg-mark">${LOGO}</span><span class="lg-tag">Lari</span></div>
+    <div class="lg-mid">
+      <h1 class="lg-word">Treinos<span>.</span></h1>
+      <p class="lg-sub">Cada série anotada. Cada carga lembrada. Você só treina.</p>
+      <div class="lg-dots" aria-hidden="true">${[1,0,1,1,0,1,0].map((on,i)=>`<i class="${on?"on":""}" style="animation-delay:${.15+i*.08}s"></i>`).join("")}</div>
+    </div>
+    <div class="lg-form">
+      <label class="lg-field"><span>Chave de acesso</span><input id="set-token" type="password" autocomplete="current-password" placeholder="github_pat_…" value="${esc(S.setupTok||"")}"></label>
+      ${S.setupErr?`<p class="lg-err">${esc(S.setupErr)}</p>`:""}
+      <button class="lg-btn" data-connect ${S.connecting?"disabled":""}>${S.connecting?"Entrando…":"Entrar"}</button>
+      <details class="lg-help"><summary>Primeira vez neste aparelho? Como pegar a chave</summary>
+        <ol>
+          <li>Abra <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">a página de nova chave do GitHub</a>, logada na conta tedeschilari-ai.</li>
+          <li>Em <b>Token name</b>, coloque "Treinos". Em <b>Expiration</b>, escolha 1 ano.</li>
+          <li>Em <b>Repository access</b>, escolha <b>Only select repositories</b> e marque <b>lari-dados</b>.</li>
+          <li>Em <b>Permissions</b>, coloque <b>Contents</b> em <b>Read and write</b>.</li>
+          <li>Clique em <b>Generate token</b>, copie e cole acima. Você só faz isso uma vez por aparelho.</li>
+        </ol></details>
+    </div>
+  </div>`;
 }
 function bindSetup(){
   const b=app.querySelector("[data-connect]"); if(!b) return;
+  const inp=app.querySelector("#set-token"); inp.onkeydown=e=>{if(e.key==="Enter")b.click()};
   b.onclick=async()=>{
-    S.setupTok=app.querySelector("#set-token").value.trim();
-    if(!S.setupTok){S.setupErr="Cole a chave do GitHub.";render();return}
+    S.setupTok=inp.value.trim();
+    if(!S.setupTok){S.setupErr="Cole a sua chave de acesso.";render();return}
     S.connecting=true;S.setupErr="";render();
     const res=await testToken(S.setupTok);
     S.connecting=false;
     if(!res.ok){S.setupErr=res.msg;render();return}
     S.token=S.setupTok; S.setupTok="";
     if(!LS.set(TK,S.token)) toast("Este navegador não guardou a chave. Ela vale só até fechar o app.");
-    startData(); render();
+    splash(); startData(); render();
   };
 }
-function vAjustes(){
-  const n=GH.pendingCount();
-  return `<div class="dhead"><a class="iconbtn" href="#inicio" aria-label="Voltar">${I("back")}</a><span class="t">Ajustes</span><span></span></div>
-  <div class="card pad"><span class="eyebrow">Seus dados</span><b>GitHub · ${CFG.repo}/${CFG.dir}</b><p class="muted small">${esc(syncText())}${n&&S.sync.state==="ok"?` · ${n} ${n===1?"alteração":"alterações"} esperando`:""}</p><div class="row"><button class="btn small" data-syncnow>Sincronizar agora</button></div></div>
-  <div class="card pad"><span class="eyebrow">Instalar como app</span><p class="small">No iPhone, abra no Safari, toque em Compartilhar e depois em <b>Adicionar à Tela de Início</b>. No Android, abra o menu do Chrome e toque em <b>Instalar app</b>.</p></div>
-  <div class="card pad"><span class="eyebrow">Este aparelho</span><p class="small muted">Desconectar apaga a chave e a cópia dos dados guardadas neste aparelho. Seus treinos continuam salvos no GitHub.</p><button class="btn light small" data-logout>${S.logoutArm?"Toque de novo para desconectar":"Desconectar deste aparelho"}</button></div>`;
+function splash(){
+  if(document.getElementById("splash")) return;
+  const el=document.createElement("div"); el.id="splash"; el.className="login splash";
+  el.innerHTML=`<div class="glow" aria-hidden="true"></div><div class="lg-mid" style="align-items:center;text-align:center"><span class="lg-mark big">${LOGO}</span><h1 class="lg-word">Treinos<span>.</span></h1></div>`;
+  document.body.appendChild(el);
+  const t0=Date.now();
+  const iv=setInterval(()=>{const ready=(S.loaded.exercicios&&S.loaded.rotinas&&S.loaded.historico)||S.ok===false;
+    if((ready&&Date.now()-t0>900)||Date.now()-t0>4000){clearInterval(iv);el.classList.add("out");setTimeout(()=>el.remove(),450)}},80);
 }
-function bindAjustes(){
+function ajustesExtra(){
+  const n=GH.pendingCount();
+  return `<div class="card pad"><span class="eyebrow">Seus dados</span><b>GitHub · ${CFG.repo}/${CFG.dir}</b><p class="muted small">${esc(syncText())}${n&&S.sync.state==="ok"?` · ${n} ${n===1?"alteração":"alterações"} esperando`:""}</p><div class="row"><button class="btn small" data-syncnow>Sincronizar agora</button></div></div>
+  <div class="card pad"><span class="eyebrow">Instalar como app</span><p class="small">No iPhone, abra no Safari, toque em Compartilhar e depois em <b>Adicionar à Tela de Início</b>. No Android, abra o menu do Chrome e toque em <b>Instalar app</b>.</p></div>
+  <div class="card pad"><span class="eyebrow">Este aparelho</span><p class="small muted">Sair apaga a chave e a cópia dos dados guardadas neste aparelho. Seus treinos continuam salvos no GitHub.</p><button class="btn light small" data-logout>${S.logoutArm?"Toque de novo para sair":"Sair deste aparelho"}</button></div>`;
+}
+function bindAjustesExtra(){
   const q=s=>app.querySelector(s);
   const sn=q("[data-syncnow]"); if(sn)sn.onclick=()=>{sn.disabled=true;GH.refresh().then(()=>{GH.flush();toast("Sincronizado");rerender()}).catch(e=>{setSync(e instanceof GHErr?"error":"offline",e);toast("Não consegui falar com o GitHub agora.");rerender()})};
   const lo=q("[data-logout]"); if(lo)lo.onclick=()=>{
@@ -1470,7 +1572,7 @@ function startData(){
   document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible"&&!GH.busy){if(GH.pendingCount())GH.flush();else GH.refresh().catch(()=>{})}});
   window.addEventListener("online",()=>{GH.flush()});
 }
-if(S.token) startData(); else render();
+if(S.token){splash();startData()} else render();
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
 
 })();
