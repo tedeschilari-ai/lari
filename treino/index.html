@@ -451,6 +451,24 @@ html:not([data-acc="pb"]) .lg-btn{background:var(--acc);color:#fff}
 .splash.out{opacity:0;pointer-events:none}
 @media (min-width:900px){.login{padding:48px 64px}.lg-mid{max-width:640px}}
 @media (prefers-reduced-motion:reduce){.login .glow,.lg-dots i{animation:none}}
+
+.sheet>*{flex-shrink:0}
+.sx-head button.info.coll{background:none;border:0;padding:0;margin:0;text-align:left;font:inherit;color:inherit;cursor:pointer}
+.sx-head .rbtns{display:flex;gap:2px;align-items:center}
+.chev svg{transition:transform .2s}
+.sx.col .chev svg{transform:rotate(180deg)}
+.sx.col{padding-block:10px}
+.sx.col .sx-head .thumb{width:48px;height:44px}
+.sx.col.done .info b{color:var(--muted)}
+.donechk{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--acc,#0D0D0D);color:#fff;flex:none}
+.donechk svg{width:16px;height:16px}
+html:not([data-acc="pb"]) .rest .lb{color:rgb(255 255 255 / .92)}
+html:not([data-acc="pb"]) .rest .ring .bg{stroke:rgb(255 255 255 / .32)}
+html:not([data-acc="pb"]) .rest .ring .fg{stroke:#fff}
+html:not([data-acc="pb"]) .rest button{background:rgb(0 0 0 / .28);color:#fff}
+html:not([data-acc="pb"]) .rest button.w{background:#fff;color:#0D0D0D}
+html:not([data-acc="pb"]) .rest .tm{color:#fff}
+.rest .lb{font-weight:600}
 </style>
 
 
@@ -856,6 +874,14 @@ function vSes(id){
 function sesItem(h,it,lastOfGroup,tag){
   const E=EXo(it.ex), tipo=(E&&E.tipo)||"carga", ref=refFor(it.ex,h,tipo), L=ref.last;
   const tec=TN(it.tecnica), key=h.id+"__"+it.k;
+  const nDone=it.sets.filter(x=>x.ok).length, done=it.sets.length>0&&nDone===it.sets.length, col=!!(S.col&&S.col[key]);
+  const chev=`<button class="iconbtn sm chev" data-coll="${key}" aria-label="${col?"Abrir":"Recolher"} exercício"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg></button>`;
+  if(col){const best=bestOf(it.sets,tipo);
+    return `<article class="sx col ${done?"done":""}" id="it-${it.k}">
+    ${tag?`<span class="btag">${I("link")}${tag}</span>`:""}
+    <div class="sx-head"><button class="thumb" data-exinfo="${it.ex}" aria-label="Ver ${esc(exName(it.ex))}">${thumb(it.ex,false)}</button>
+      <button class="info coll" data-coll="${key}" aria-expanded="false"><b>${esc(exName(it.ex))}</b><span class="sub">${done?`Feito · ${it.sets.length} ${it.sets.length===1?"série":"séries"}${best?" · melhor "+fmtSet(best,tipo):""}`:`${nDone} de ${it.sets.length} séries feitas`}</span></button>
+      <div class="rbtns">${done?`<span class="donechk" aria-label="Exercício concluído"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>`:""}${chev}</div></div></article>`;}
   let rows="";
   it.sets.forEach((s,i)=>{
     rows+=`<button class="stype st-${s.t||"n"}" data-stype="${key}|${i}" aria-label="${STN[s.t||"n"]}, toque para mudar">${STL[s.t||"n"]||(i+1)}</button>
@@ -868,8 +894,8 @@ function sesItem(h,it,lastOfGroup,tag){
   return `<article class="sx" id="it-${it.k}">
     ${tag?`<span class="btag">${I("link")}${tag}</span>`:""}
     <div class="sx-head"><button class="thumb" data-exinfo="${it.ex}" aria-label="Ver ${esc(exName(it.ex))}">${thumb(it.ex,false)}</button>
-      <div class="info"><b>${esc(exName(it.ex))}</b><span class="sub">${meta||esc(GN(E&&E.grupo))}</span></div>
-      <button class="iconbtn sm" data-itmenu="${it.k}" aria-label="Opções do exercício">${I("dots")}</button></div>
+      <button class="info coll" data-coll="${key}" aria-expanded="true"><b>${esc(exName(it.ex))}</b><span class="sub">${meta||esc(GN(E&&E.grupo))}</span></button>
+      <div class="rbtns">${chev}<button class="iconbtn sm" data-itmenu="${it.k}" aria-label="Opções do exercício">${I("dots")}</button></div></div>
     ${it.tecnica&&it.tecnica!=="normal"||it.obs?`<div class="row" style="gap:6px">${it.tecnica&&it.tecnica!=="normal"?`<button class="pill dark" data-tecinfo="${it.tecnica}">${esc(tec[1])} ⓘ</button>`:""}${it.obs?`<span class="small muted">${esc(it.obs)}</span>`:""}</div>`:""}
     ${L?`<div class="lastline maxline"><span>Máximo da última vez (${ddmm(ref.pv.ses.data)}): <b>${fmtSet(L,tipo)}</b></span><span class="lastsets">Séries: ${ref.pv.it.sets.filter(setDone).map(x=>(tipo==="tempo"?num(x.reps)+" s":(num(x.kg)?fmtN(num(x.kg))+"×":"")+num(x.reps))).join(" · ")}</span>${recDiff?`<span>Recorde: <b>${fmtSet(ref.rec,tipo)}</b></span>`:""}${ref.pv.it.nota?`<span class="muted">“${esc(ref.pv.it.nota)}”</span>`:""}</div>`:""}
     <div class="sets"><span class="h">Série</span><span class="h">${tipo==="tempo"?"":tipo==="corpo"?"+kg":"kg"}</span><span class="h">${tipo==="tempo"?"Seg":"Reps"}</span><span class="h" style="text-align:center">✓</span>${rows}</div>
@@ -1230,6 +1256,7 @@ function bind(){
     on("[data-sesnome]",el=>{H.nome=el.value.trim()||H.nome;saveSes(H)},"onchange");
     on("[data-sesnota]",el=>{H.nota=el.value;saveSes(H)},"oninput");
     on("[data-itmenu]",b=>itemMenu(H,b.dataset.itmenu));
+    on("[data-coll]",b=>{const k=b.dataset.coll;(S.col=S.col||{})[k]=!S.col[k];rerender()});
     on("[data-tecinfo]",b=>{const t=TN(b.dataset.tecinfo);toast(t[1]+": "+t[2])});
     on("[data-itnota]",el=>{const {it}=findIt(el.dataset.itnota);if(it){it.nota=el.value;saveSes(H)}},"oninput");
     on("[data-set]",el=>{
@@ -1247,6 +1274,7 @@ function bind(){
         else{toast("Coloque as repetições da série");return}
       }
       s.ok=!s.ok;
+      if(s.ok&&it.sets.every(x=>x.ok)){(S.col=S.col||{})[key]=true}
       if(s.ok){const idx=H.itens.indexOf(it),nx=H.itens[idx+1],inGroupNotLast=it.grupo&&nx&&nx.grupo===it.grupo;if(!inGroupNotLast){let d=it.descanso;if(it.grupo){const g=H.itens.filter(x=>x.grupo===it.grupo);d=g[g.length-1].descanso||d}startRest(d,exName(it.ex))}}
       saveSes(H); rerender();
     });
